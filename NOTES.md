@@ -19,4 +19,7 @@ SRP(Single  Responsibility Priciple) or SOC(Separation of concerns)
 
 > When piecewise object construction is complicated, provide an API for doing it succinctly
 
+## Prototype
+
+> A partially or fully initialized object that you copy (clone) and make use of it.
 
