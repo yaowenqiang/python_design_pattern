@@ -1,73 +1,49 @@
-import random
-import unittest
-class Singleton(type):
-    _instances = {}
-
-    def __call__(cls, *args, **kwargs):
-        if cls not in cls._instances:
-            cls._instances[cls] = super(Singleton, cls)\
-                .__call__(*args, **kwargs)
-        return cls._instances[cls]
-
-class Database(metaclass=Singleton):
-    def __init__(self):
-        self.population = {}
-        with  open('capitals.txt', 'r') as f:
-            lines = f.readlines()
-            for i in range(0, len(lines), 2):
-                self.population[lines[i].strip()] = \
-                    int(lines[i+1].strip())
+class Monostate:
+    _shared_stat = {}
+    def __init__(cls, *args, **kwargs):
+        obj = super(Monostat, cls).__new__(cls, *args, **kwargs)
+        obj.__dict__ = cls._shared_stat
+        return obj
 
 
-class ConfigurableRecordFinder:
-    def __init__(self, db=Database()):
-        self.db = db
-
-    def total_population(self, cities):
-        result = 0
-        for c in cities:
-            result += self.db.population[c]
-        return result
+class CFO(Monostate):
+    def  __init__(self):
+        self.name = ''
+        self.money_managed = 0
 
 
-class DummyDatabase:
-    population = {
-        'alpha':1,
-        'beta':2,
-        'gama':3,
+    def __str__(self):
+        return f'{self.name} manages ${self.money_managed}'
+
+
+
+class CEO:
+    __shared_stat = {
+        'name':'Steve',
+        'age':55
     }
 
-    def get_population(self, name):
-        return self.population[name]
-
-class SingletonRecordFinder:
-    def total_population(self, cities):
-        result = 0
-        for c in cities:
-            result += Database().population[c]
-        return result
-
-class SingletonTests(unittest.TestCase):
-    def test_is_singleton(self):
-        db1 = Database()
-        db2 = Database()
-        self.assertEqual(db1, db2)
-
-    def test_singleton_total_population(self):
-        rf = SingletonRecordFinder()
-        names = ["Beijing",'Shanghai']
-        tp = rf.total_population(names)
-        self.assertEqual(10000000 + 20000000, tp)
+    def __init__(self):
+        self.__dict__ = self.__shared_stat
 
 
-    ddb = DummyDatabase()
+    def  __str__(self):
+        return f'{self.name} is {self.age} years old'
 
-    def test_dependent_total_population(self):
-        crf = ConfigurableRecordFinder(self.ddb)
-        self.assertEqual(6, crf.total_population(['alpha', 'beta', 'gama']))
+if  __name__ == '__main__':
+    ceo1 = CEO()
+    print(ceo1)
+    ceo2 = CEO()
+    ceo2.age = 77
+    print(ceo2)
+    print(ceo1)
 
-if __name__ == '__main__':
-    unittest.main()
+    cfo1 = CFO()
+    cfo1.name = 'jack'
+    cfo1.money_managed = 100
+    cfo2 = CFO()
+    cfo3 = CFO()
 
-
+    print(cfo1)
+    print(cfo2)
 
