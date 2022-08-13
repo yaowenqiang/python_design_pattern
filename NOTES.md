@@ -23,3 +23,8 @@ SRP(Single  Responsibility Priciple) or SOC(Separation of concerns)
 
 > A partially or fully initialized object that you copy (clone) and make use of it.
 
+# Bridge
+
+> A mechanism that decouples an interface(hierarchy) from an implementation(hierarchy).
+
+

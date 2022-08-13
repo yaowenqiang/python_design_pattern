@@ -1,13 +1,15 @@
 class Monostate:
-    _shared_stat = {}
+    _shared_state = {}
     def __init__(cls, *args, **kwargs):
-        obj = super(Monostat, cls).__new__(cls, *args, **kwargs)
-        obj.__dict__ = cls._shared_stat
+        breakpoint()
+        obj = super(Monostate, cls).__new__(cls, *args, **kwargs)
+        obj.__dict__ = cls._shared_state
         return obj
 
 
 class CFO(Monostate):
-    def  __init__(self):
+    def __init__(self):
+        breakpoint()
         self.name = ''
         self.money_managed = 0
 
