@@ -27,4 +27,6 @@ SRP(Single  Responsibility Priciple) or SOC(Separation of concerns)
 
 > A mechanism that decouples an interface(hierarchy) from an implementation(hierarchy).
 
+# facade
 
+> Provide a simple, easy to understand/user interface over a large and sophisticated body of code
