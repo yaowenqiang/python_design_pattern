@@ -30,3 +30,8 @@ SRP(Single  Responsibility Priciple) or SOC(Separation of concerns)
 # facade
 
 > Provide a simple, easy to understand/user interface over a large and sophisticated body of code
+
+# flyweight
+
+> A space optimization technique that lets us use less memory by storing externally the data associated with similar objects
+
