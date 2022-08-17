@@ -35,3 +35,8 @@ SRP(Single  Responsibility Priciple) or SOC(Separation of concerns)
 
 > A space optimization technique that lets us use less memory by storing externally the data associated with similar objects
 
+# Proxy
+
+> A class that functions as an interface to a particular resources. That resource may be remote, expensive to construct, or may requre logging or some other added functionality.
+
+
