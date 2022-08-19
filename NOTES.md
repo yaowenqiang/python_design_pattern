@@ -40,3 +40,14 @@ SRP(Single  Responsibility Priciple) or SOC(Separation of concerns)
 > A class that functions as an interface to a particular resources. That resource may be remote, expensive to construct, or may requre logging or some other added functionality.
 
 
+## Proxy vs . Decorator
+
++ Proxy provides an identical interface; decorator provides an enhanced interface
++ Decorator typically aggregates (or has reference to) what it is decorating; proxy doesn't have to
++ Proxy might not even be working with a materialized object
+
+# Chain of Responsibility
+
+> A chain of components who all get a chance to process a command on a query.optionally having default processing implementation and an ability to terminate the processing chain.
+
+
