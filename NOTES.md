@@ -51,3 +51,16 @@ SRP(Single  Responsibility Priciple) or SOC(Separation of concerns)
 > A chain of components who all get a chance to process a command on a query.optionally having default processing implementation and an ability to terminate the processing chain.
 
 
+## Command Query Separation
+
+Command = asking for an action or change(e.g, please set your attack value to 2)
+Query = asking for information (e.g, please give me your attack value)
+CQS = having separate means of sending commands and queries to e.g, direct field access
+
+
+# Command
+
+An object which represents an instruction to perform a particular action.Contains all the information necessary for the action to be taken.
+
+
+
