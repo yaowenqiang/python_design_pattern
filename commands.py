@@ -8,7 +8,7 @@ class BankAccount:
         self.balance = balance
 
 
-    def deposite(self, amount):
+    def deposit(self, amount):
         self.balance += amount
         print(f'Deposited {amount}, '
               f'balance = {self.balance}')
@@ -18,8 +18,10 @@ class BankAccount:
     def withdraw(self, amount):
         if self.balance - amount >= BankAccount.OVERDRAFT_LIMIT:
             self.balance -= amount
-            print(f'withdraw {amount}'
-                  f'balance={self.balance}')
+            print(f'withdraw {amount}, '
+                  f'balance = {self.balance}')
+            return True
+        return False
 
 
     def __str__(self):
@@ -41,13 +43,24 @@ class BankAccountCommand(Command):
         self.account = account
         self.action = action
         self.amount = amount
+        self.success = None
 
 
     def invoke(self):
         if self.action == self.Action.DEPOSIT:
-            self.account.deposite(self.amount)
+            self.account.deposit(self.amount)
+            self.success = True
         elif self.action == self.Action.WITHDRAW:
+            self.success = self.account.withdraw(self.amount)
+
+    def undo(self):
+        if not self.success:
+            return
+        if self.action == self.Action.DEPOSIT:
             self.account.withdraw(self.amount)
+        elif self.action == self.Action.WITHDRAW:
+            self.account.deposit(self.amount)
+
 
 
 if __name__ == '__main__':
@@ -58,6 +71,19 @@ if __name__ == '__main__':
 
     cmd.invoke()
     print(f'After $100 deposit: {ba}')
+    cmd.undo()
+    print(f'After $100 deposit undone: {ba}')
+
+
+    illegal_cmd = BankAccountCommand(
+        ba, BankAccountCommand.Action.WITHDRAW, 1000
+    )
+
+    illegal_cmd.invoke()
+    print(f'After impossible withdrawal: {ba}')
+    illegal_cmd.undo()
+    print(f'After undone: {ba}')
+
 
 
 
