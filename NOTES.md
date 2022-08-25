@@ -62,5 +62,10 @@ CQS = having separate means of sending commands and queries to e.g, direct field
 
 An object which represents an instruction to perform a particular action.Contains all the information necessary for the action to be taken.
 
+# Interpreter
+
+A component that processes structured text data. Does so by turning it into separate lexical tokens(lexing) and then interpreting sequences of said tokens(parsing)
+
+
 
 
