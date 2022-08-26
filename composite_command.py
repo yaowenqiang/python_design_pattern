@@ -158,7 +158,6 @@ class TestSuite(unittest.TestCase):
         print(f'ba1: {ba1}, ba2: {ba2}')
         transfer.undo()
         print(f'ba1: {ba1}, ba2: {ba2}')
-        print(transfer.success)
 
 
 if __name__ == '__main__':
