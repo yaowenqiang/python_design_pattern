@@ -66,6 +66,9 @@ An object which represents an instruction to perform a particular action.Contain
 
 A component that processes structured text data. Does so by turning it into separate lexical tokens(lexing) and then interpreting sequences of said tokens(parsing)
 
+# Mediator
+
+A component that facilitates communication between other components without them necessarily being aware of eache other or having direct(reference) access to each other.
 
 
 
