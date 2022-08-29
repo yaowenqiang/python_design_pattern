@@ -2,7 +2,7 @@ class Person:
     def __init__(self, name):
         self.name = name
         self.chat_log = []
-        slf.room = None
+        self = None
 
     def receive(self, sender ,message):
         s = f'(sender): {message}'
@@ -11,11 +11,11 @@ class Person:
 
 
     def say(self, message):
-        self.room.broadcast(self.anme, message)
+        self.room.broadcast(self.name, message)
 
 
     def private_message(self, who, message):
-        self.room.essage(self.name, who, message)
+        self.room.message(self.name, who, message)
 
 
 class ChatRoom:
@@ -45,13 +45,13 @@ class ChatRoom:
 if __name__ == '__main__':
     room = ChatRoom()
     john = Person('John')
-    Jane = Person('Jane')
+    jane = Person('Jane')
     room.join(john)
-    room.john(jane)
+    room.join(jane)
     john.say('hi room')
-    jane.say('oh, hey jon')
+    jane.say('oh, hey John')
     simon = Person('Simon')
     room.join(simon)
     simon.say('Hi, eveyone')
 
-    jane.private_message(''Simon', 'glad you could join us1 ')
+    jane.private_message('Simon', 'glad you could join us1 ')
