@@ -79,4 +79,11 @@ A token/handle representing the system state. Lets us roll back to the state whe
 
 An observer is an object that wishes to be informed about events happening in the system. The entity generating the events is an observable
 
+# State
+
+A pattern in which the object's behavior is determined by its state. An object transition from one state to another(something needs to trigger a translation)
+
+A formalized contruct which manages state and transitions is called state machine.
+
+
 
