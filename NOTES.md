@@ -86,4 +86,7 @@ A pattern in which the object's behavior is determined by its state. An object t
 A formalized contruct which manages state and transitions is called state machine.
 
 
+# Strategy
+
+Enables the exact behavior of a system to be selected at run-time
 
