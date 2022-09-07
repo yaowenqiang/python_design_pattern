@@ -90,3 +90,9 @@ A formalized contruct which manages state and transitions is called state machin
 
 Enables the exact behavior of a system to be selected at run-time
 
+# Template 
+
+Allows us to define the 'skeleton' of the algorithm, with concrete implementations defined in subclasses
+
+
+
