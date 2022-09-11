@@ -95,4 +95,7 @@ Enables the exact behavior of a system to be selected at run-time
 Allows us to define the 'skeleton' of the algorithm, with concrete implementations defined in subclasses
 
 
+# Visitor
+
+A component(visitor) that knows how to traverse a data structure compose of(possibly related)types.
 
