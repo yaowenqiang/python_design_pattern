@@ -1,19 +1,17 @@
 from abc import ABC
 from enum import Enum
 
+
 class BankAccount:
     OVERDRAFT_LIMIT = -500
 
     def __init__(self, balance=0):
         self.balance = balance
 
-
     def deposit(self, amount):
         self.balance += amount
         print(f'Deposited {amount}, '
               f'balance = {self.balance}')
-
-
 
     def withdraw(self, amount):
         if self.balance - amount >= BankAccount.OVERDRAFT_LIMIT:
@@ -23,7 +21,6 @@ class BankAccount:
             return True
         return False
 
-
     def __str__(self):
         return f'balance = {self.balance}'
 
@@ -31,8 +28,10 @@ class BankAccount:
 class Command(ABC):
     def invoke(self):
         pass
+
     def undo(self):
         pass
+
 
 class BankAccountCommand(Command):
     class Action(Enum):
@@ -44,7 +43,6 @@ class BankAccountCommand(Command):
         self.action = action
         self.amount = amount
         self.success = None
-
 
     def invoke(self):
         if self.action == self.Action.DEPOSIT:
@@ -62,7 +60,6 @@ class BankAccountCommand(Command):
             self.account.deposit(self.amount)
 
 
-
 if __name__ == '__main__':
     ba = BankAccount()
     cmd = BankAccountCommand(
@@ -74,7 +71,6 @@ if __name__ == '__main__':
     cmd.undo()
     print(f'After $100 deposit undone: {ba}')
 
-
     illegal_cmd = BankAccountCommand(
         ba, BankAccountCommand.Action.WITHDRAW, 1000
     )
@@ -83,7 +79,3 @@ if __name__ == '__main__':
     print(f'After impossible withdrawal: {ba}')
     illegal_cmd.undo()
     print(f'After undone: {ba}')
-
-
-
-

@@ -14,11 +14,9 @@ class Person(PropertyObservable):
         super().__init__()
         self._age = age
 
-
     @property
     def age(self):
         return self._age
-
 
     @property
     def can_vote(self):
@@ -45,7 +43,6 @@ class TrafficAuthority:
             self.person_changed
         )
 
-
     def person_changed(self, name, value):
         if name == 'age':
             if value < 16:
@@ -56,10 +53,12 @@ class TrafficAuthority:
                     self.person_changed
                 )
 
+
 if __name__ == '__main__':
     def person_changed(name, value):
         if name == 'can_vote':
             print(f'voting ability changed to {value}')
+
 
     p = Person()
     p.property_changed.append(
@@ -69,7 +68,3 @@ if __name__ == '__main__':
     for age in range(16, 21):
         print(f'Changing age to {age}')
         p.age = age
-
-
-
-

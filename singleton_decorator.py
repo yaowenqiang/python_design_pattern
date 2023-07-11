@@ -1,9 +1,11 @@
 import random
 
+
 def singleton(class_):
     instances = {}
-    def  get_instance(*args, **kwargs):
-        if  class_ not in instances:
+
+    def get_instance(*args, **kwargs):
+        if class_ not in instances:
             instances[class_] = class_(*args, **kwargs);
         return instances[class_]
 
@@ -12,9 +14,9 @@ def singleton(class_):
 
 @singleton
 class Database:
-    def  __init__(self):
-        id = random.randint(1, 101)
-        print('id = ', id)
+    def __init__(self):
+        _id = random.randint(1, 101)
+        print('id = ', _id)
         print('Loading a database from file')
 
 

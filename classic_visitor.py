@@ -4,11 +4,14 @@ from abc import ABC
 def _qualname(obj):
     return obj.__module__ + '.' + obj.__qualname__
 
+
 def _declaring_class(obj):
     name = _qualname(obj)
     return name[:name.rfind('.')]
 
+
 _methods = {}
+
 
 def _visitor_impl(self, arg):
     method = _methods[(_qualname(type(self)), type(arg))]
@@ -41,13 +44,13 @@ class AdditionExpression():
     def accept(self, visitor):
         visitor.visit(self)
 
+
 class ExpressionPrinter:
     def __init__(self):
         self.buffer = []
 
     def __str__(self):
         return ''.join(self.buffer)
-
 
     @visitor(DoubleExpression)
     def visit(self, de):
@@ -63,7 +66,6 @@ class ExpressionPrinter:
 
 
 if __name__ == '__main__':
-
     e = AdditionExpression(
         DoubleExpression(1),
         AdditionExpression(
@@ -72,8 +74,6 @@ if __name__ == '__main__':
         )
     )
 
-
     printer = ExpressionPrinter()
     printer.visit(e)
     print(printer)
-

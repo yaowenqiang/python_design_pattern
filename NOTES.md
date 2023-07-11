@@ -1,4 +1,4 @@
-SRP(Single  Responsibility Priciple) or SOC(Separation of concerns)
+SRP(Single  Responsibility Principle) or SOC(Separation of concerns)
 
 # Gamma Categorization
 
@@ -83,7 +83,7 @@ An observer is an object that wishes to be informed about events happening in th
 
 A pattern in which the object's behavior is determined by its state. An object transition from one state to another(something needs to trigger a translation)
 
-A formalized contruct which manages state and transitions is called state machine.
+A formalized construct which manages state and transitions is called state machine.
 
 
 # Strategy

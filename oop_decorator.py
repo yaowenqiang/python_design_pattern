@@ -1,27 +1,25 @@
 from abc import ABC
 
+
 class Shape:
     def __str__(self):
         return
+
 
 class Circle(Shape):
     def __init__(self, radius):
         self.radius = radius
 
-
     def resize(self, factor):
         self.radius *= factor
-
 
     def __str__(self):
         return f'A circle of radius {self.radius}'
 
 
-
 class Square(Shape):
     def __init__(self, side):
         self.side = side
-
 
     def __str__(self):
         return f'A square with side {self.side}'
@@ -34,19 +32,18 @@ class ColoredShape(Shape):
         self.shape = shape
         self.color = color
 
-
     def __str__(self):
         return f'{self.shape}  has the color {self.color}'
 
 
 class TransparentShape(Shape):
-    def __init__(self, shape,transparency):
+    def __init__(self, shape, transparency):
         self.shape = shape
         self.transparency = transparency
 
-
     def __str__(self):
-        return f'{self.shape} has {self.transparency*100.0} transparency'
+        return f'{self.shape} has {self.transparency * 100.0} transparency'
+
 
 if __name__ == '__main__':
     circle = Circle(2)
@@ -58,6 +55,3 @@ if __name__ == '__main__':
     red_transparent_circle = TransparentShape(red_circle, 0.5)
 
     print(red_transparent_circle)
-
-
-

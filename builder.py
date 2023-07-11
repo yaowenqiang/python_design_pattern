@@ -16,7 +16,7 @@ class HtmlElement:
         lines.append(f'{i}<{self.name}>')
 
         if self.text:
-            i1 = ' ' * ((indent +1) * self.indent_size)
+            i1 = ' ' * ((indent + 1) * self.indent_size)
             lines.append(f'{i1}{self.text}')
 
         for e in self.elements:
@@ -27,7 +27,7 @@ class HtmlElement:
         return '\n'.join(lines)
 
 
-class HtmlBuilder():
+class HtmlBuilder:
     def __init__(self, root_name):
         self.root_name = root_name
         self.__root = HtmlElement(root_name)
@@ -46,18 +46,16 @@ class HtmlBuilder():
     def __str__(self):
         return str(self.__root)
 
-
     @staticmethod
     def create(name):
         return HtmlBuilder(name)
 
-#builder = HtmlBuilder('ui')
+
+# builder = HtmlBuilder('ui')
 builder = HtmlBuilder.create('ui')
 builder.add_child('li', 'hello')
 builder.add_child('li', 'world')
 builder.add_child_fluent('li', 'hello').add_child_fluent('li', 'world')
 
-print('Oridinary builder:')
+print('Ordinary builder:')
 print(builder)
-
-

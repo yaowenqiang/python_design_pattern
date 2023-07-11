@@ -5,10 +5,12 @@ class Car:
     def drive(self):
         print(f'Car is being driven by {self.driver.name}')
 
+
 class Driver:
     def __init__(self, name, age):
         self.name = name
         self.age = age
+
 
 class CarProxy:
     def __init__(self, driver):
@@ -22,9 +24,7 @@ class CarProxy:
             print('Driver too young')
 
 
-
 if __name__ == '__main__':
     driver = Driver('John', 10)
     car = CarProxy(driver)
     car.drive()
-

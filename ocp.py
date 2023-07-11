@@ -1,6 +1,7 @@
 # OCP(Open Close Principle)
 from enum import Enum
 
+
 class Color(Enum):
     READ = 1
     GREEN = 2
@@ -13,14 +14,12 @@ class Size(Enum):
     LARGE = 3
 
 
-
 class Product:
 
     def __init__(self, name, color, size):
         self.size = size
         self.color = color
         self.name = name
-
 
 
 class ProductFilter:
@@ -30,12 +29,10 @@ class ProductFilter:
             if p.color == color:
                 yield p
 
-
     def filter_by_size(self, products, size):
         for p in products:
             if p.size == size:
                 yield p
-
 
     def filter_by_size_and_size(self, products, size, color):
         for p in products:
@@ -43,7 +40,7 @@ class ProductFilter:
                 yield p
 
 
-# Enterprise pattenr (specification pattern)
+# Enterprise pattern (specification pattern)
 
 
 class Specification:
@@ -52,6 +49,7 @@ class Specification:
 
     def __and__(self, other):
         return AndSpecification(self, other)
+
 
 class Filter:
     def filter(slef, items, specification):
@@ -82,16 +80,13 @@ class BatterFilter(Filter):
 
 
 class AndSpecification(Specification):
-    def  __init__(self, spec1, spec2):
+    def __init__(self, spec1, spec2):
         self.spec1 = spec1
         self.spec2 = spec2
-
 
     def is_satificied(self, item):
         return self.spec1.is_satificied(item) and \
             self.spec2.is_satificied(item)
-
-
 
 
 apple = Product('Apple', Color.GREEN, Size.SMALL)
@@ -104,7 +99,6 @@ pf = ProductFilter()
 
 for p in pf.filter_by_color(products, Color.GREEN):
     print(f'- {p.name} is green')
-
 
 bf = BatterFilter()
 print('Green products: ')
@@ -119,11 +113,10 @@ large = SizeSpecification(Size.LARGE)
 for p in bf.filter(products, large):
     print(f'- {p.name} is large')
 
-
 print('Large blue items')
 
 # large_blue = AndSpecification(large, ColorSpecification(Color.BLUE))
-large_blue = large and  ColorSpecification(Color.BLUE)
+large_blue = large and ColorSpecification(Color.BLUE)
 
 for p in bf.filter(products, large_blue):
     print(f'- {p.name} is large and blue')

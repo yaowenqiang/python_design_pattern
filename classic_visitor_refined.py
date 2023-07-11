@@ -4,11 +4,14 @@ from abc import ABC
 def _qualname(obj):
     return obj.__module__ + '.' + obj.__qualname__
 
+
 def _declaring_class(obj):
     name = _qualname(obj)
     return name[:name.rfind('.')]
 
+
 _methods = {}
+
 
 def _visitor_impl(self, arg):
     method = _methods[(_qualname(type(self)), type(arg))]
@@ -25,13 +28,12 @@ def visitor(arg_type):
     return decorator
 
 
-class DoubleExpression():
+class DoubleExpression:
     def __init__(self, value):
         self.value = value
 
 
-
-class AdditionExpression():
+class AdditionExpression:
     def __init__(self, left, right):
         self.left = left
         self.right = right
@@ -44,7 +46,6 @@ class ExpressionPrinter:
     def __str__(self):
         return ''.join(self.buffer)
 
-
     @visitor(DoubleExpression)
     def visit(self, de):
         self.buffer.append(str(de.value))
@@ -55,7 +56,7 @@ class ExpressionPrinter:
         # ae.left.accept(self)
         self.visit(ae.left)
         self.buffer.append('+')
-        #ae.right.accept(self)
+        # ae.right.accept(self)
         self.visit(ae.right)
         self.buffer.append(')')
 
@@ -68,19 +69,15 @@ class ExpressionEvaluator:
     def visit(self, de):
         self.value = de.value
 
-
     @visitor(AdditionExpression)
     def visitor(self, ae):
         self.visit(ae.left)
         temp = self.value
         self.visit(ae.right)
-        self.value  += temp
-
-
+        self.value += temp
 
 
 if __name__ == '__main__':
-
     e = AdditionExpression(
         DoubleExpression(1),
         AdditionExpression(
@@ -88,7 +85,6 @@ if __name__ == '__main__':
             DoubleExpression(3)
         )
     )
-
 
     printer = ExpressionPrinter()
     printer.visit(e)
@@ -98,4 +94,3 @@ if __name__ == '__main__':
 
     evaluator.visit(e)
     print(f'{printer} = {evaluator.value}')
-

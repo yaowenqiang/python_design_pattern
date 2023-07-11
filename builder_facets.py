@@ -8,17 +8,14 @@ class Person:
         self.position = None
         self.annual_income = None
 
-
     def __str__(self):
         return f'Address: {self.street_address}, {self.postcode}, {self.city} ' + \
-                f'Employed at {self.company_name} as a {self.postcode} earning {self.annual_income}'
+            f'Employed at {self.company_name} as a {self.postcode} earning {self.annual_income}'
 
 
-
-class PersonBuilder():
+class PersonBuilder:
     def __init__(self, person=Person()):
         self.person = person
-
 
     @property
     def works(self):
@@ -31,10 +28,10 @@ class PersonBuilder():
     def build(self):
         return self.person
 
+
 class PersonJobBuilder(PersonBuilder):
     def __init__(self, person):
         super().__init__(person)
-
 
     def at(self, company_name):
         self.person.company_name = company_name
@@ -53,7 +50,6 @@ class PersonAddressBuilder(PersonBuilder):
     def __init__(self, person):
         super().__init__(person)
 
-
     def at(self, street_address):
         self.person.street_address = street_address
         return self
@@ -67,17 +63,16 @@ class PersonAddressBuilder(PersonBuilder):
         return self
 
 
-
 pb = PersonBuilder()
-person = pb\
-        .lives\
-            .at('123 London road')\
-            .in_city('london')\
-            .with_postcode('SW123bC')\
-        .works\
-            .at('Fabrikam')\
-            .as_a('Engineer')\
-            .earning(123000)\
-        .build()
+person = pb \
+    .lives \
+    .at('123 London road') \
+    .in_city('london') \
+    .with_postcode('SW123bC') \
+    .works \
+    .at('Fabrikam') \
+    .as_a('Engineer') \
+    .earning(123000) \
+    .build()
 
 print(person)

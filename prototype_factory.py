@@ -1,11 +1,13 @@
 import copy
+
+
 class Address:
     def __init__(self, street_address, suite, city):
         self.suite = suite
         self.city = city
         self.street_address = street_address
 
-    def  __str__(self):
+    def __str__(self):
         return f'{self.street_address}, Suit: #{self.suite}, {self.city}'
 
 
@@ -14,14 +16,13 @@ class Employee:
         self.name = name
         self.address = address
 
-    def  __str__(self):
+    def __str__(self):
         return f'{self.name}, works at {self.address}'
 
 
 class EmployeeFactory:
     main_office_employee = Employee('', Address('123 East Dr', 0, 'London'))
     aux_office_employee = Employee('', Address('123B East Dr', 0, 'London'))
-
 
     @staticmethod
     def __new_employee(proto, name, suite):
@@ -37,15 +38,12 @@ class EmployeeFactory:
             name, suite
         )
 
-
-
     @staticmethod
     def new_aux_office_employee(name, suite):
         return EmployeeFactory.__new_employee(
             EmployeeFactory.aux_office_employee,
             name, suite
         )
-
 
 
 john = EmployeeFactory.new_main_office_employee('john', 101)
